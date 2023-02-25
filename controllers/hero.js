@@ -9,7 +9,7 @@ exports.getAllHeroes = async (req, res, next) => {
     next(err);
     // res
     //   .status(500)
-    //   .json({ message: "An error occurred. Please try again later" });
+    //   .send({ message: "An error occurred. Please try again later" });
   }
 };
 
@@ -18,7 +18,7 @@ exports.getHero = async (req, res, next) => {
     const hero = await Hero.findById(req.params.id);
 
     if (!hero) {
-      return res.status(404).json("No hero found");
+      return res.status(404).send("No hero found");
     }
 
     res.status(200).json(hero);
@@ -32,7 +32,7 @@ exports.createHero = async (req, res, next) => {
     const hero = await Hero.create(req.body);
 
     if (!hero) {
-      return res.status(404).json("Something went wrong");
+      return res.status(404).send("Something went wrong");
     }
 
     res.status(200).json(hero);
@@ -49,7 +49,7 @@ exports.updateHero = async (req, res, next) => {
     });
 
     if (!hero) {
-      return res.status(404).json("No hero found");
+      return res.status(404).send("No hero found");
     }
 
     res.status(200).json(hero);
@@ -63,7 +63,7 @@ exports.deleteHero = async (req, res, next) => {
     const hero = await Hero.findByIdAndDelete(req.params.id);
 
     if (!hero) {
-      return res.status(404).json("No hero found");
+      return res.status(404).send("No hero found");
     }
 
     res.status(200).json("Delete hero successfully");

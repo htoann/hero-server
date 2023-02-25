@@ -9,7 +9,11 @@ const initDatabase = () => {
       useUnifiedTopology: true,
     })
     .then(() => console.log("Connected database"))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log("Database connection failed. Exiting now...");
+      console.error(error);
+      process.exit(1);
+    });
 };
 
 module.exports = initDatabase;

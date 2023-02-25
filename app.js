@@ -4,9 +4,10 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-var heroesRouter = require("./routes/heroes");
+var heroesRouter = require("./routes/hero");
+var authRouter = require("./routes/auth");
 
-const initDatabase = require("./initDatabase");
+const initDatabase = require("./config/initDatabase");
 
 var app = express();
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/heroes", heroesRouter);
+app.use("/api/auth", authRouter);
 app.use("*", async (req, res) => {
   res.status(404).send("404 not found");
 });
